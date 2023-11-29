@@ -2,6 +2,8 @@
 
 
 
+import re
+
 class MyString:
     def __init__(self, value=''):
         self.value = value
@@ -16,5 +18,6 @@ class MyString:
         return self.value.endswith('!')
 
     def count_sentences(self):
-        sentences = [sentence for sentence in re.split(r'\.|\?|!', self.value) if sentence]
+        replaced_value = re.sub(r'[!?]', '.', self.value)
+        sentences = [sentence for sentence in replaced_value.split('.') if sentence]
         return len(sentences)
